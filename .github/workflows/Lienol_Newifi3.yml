@@ -91,16 +91,18 @@ jobs:
         
     - name: 自定义配置文件Lienol
       env:
-        CONFIG_FILE: 'Lienol.config'
+        CONFIG_FILE: 'newifi3.config'
+        CUSTOMIZE_FILE: 'customize.sh'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        [ -e $CUSTOMIZE_FILE ] && mv $CUSTOMIZE_FILE openwrt/customize.sh
         cd openwrt && rm -rf package/litte/AdGuardHome
         rm -rf package/litte/luci-app-adguardhome
         cp -f package/litte/commit/zzz-default-settings package/default-settings/files/zzz-default-settings
         cp -f package/litte/commit/banner package/base-files/files/etc/banner
-        cp -f newifi3.config .config && make defconfig
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        cd ..
         chmod +x customize.sh && customize.sh
         
     - name: 下载包文件
