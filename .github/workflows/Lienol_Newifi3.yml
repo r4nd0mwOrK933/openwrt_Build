@@ -103,7 +103,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         cd ..
-        chmod +x customize.sh && customize.sh
+        chmod +x $CUSTOMIZE_FILE && $GITHUB_WORKSPACE/$CUSTOMIZE_FILE
         
     - name: 下载包文件
       working-directory: ./openwrt
