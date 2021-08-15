@@ -98,10 +98,10 @@ jobs:
         rm -rf package/litte/luci-app-adguardhome
         cp -f package/litte/commit/zzz-default-settings package/default-settings/files/zzz-default-settings
         cp -f package/litte/commit/banner package/base-files/files/etc/banner
-        cp -f ./newifi3.config .config && make defconfig
+        cp -f newifi3.config .config && make defconfig
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        chmod +x ./customize.sh && ./customize.sh
+        chmod +x customize.sh && customize.sh
         
     - name: 下载包文件
       working-directory: ./openwrt
