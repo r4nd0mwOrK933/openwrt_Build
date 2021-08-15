@@ -103,7 +103,9 @@ jobs:
         cp -f package/litte/commit/banner package/base-files/files/etc/banner
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        chmod +x customize.sh && customize.sh
+        sed -i 's/luci-theme-bootstrap/luci-theme-material/g' ./feeds/luci/collections/luci/Makefile
+        sed -i 's/$(VERSION_DIST_SANITIZED)/$(shell date +'%F')/g' include/image.mk
+        sed -i 's/OpenWrt/Newifi-D2/g' package/base-files/files/bin/config_generate
         
     - name: 下载包文件
       working-directory: ./openwrt
