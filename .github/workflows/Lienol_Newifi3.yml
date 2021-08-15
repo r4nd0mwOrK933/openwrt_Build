@@ -102,7 +102,7 @@ jobs:
         cp -f package/litte/commit/banner package/base-files/files/etc/banner
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        chmod +x $CUSTOMIZE_FILE && customize.sh
+        chmod +x customize.sh && customize.sh
         
     - name: 下载包文件
       working-directory: ./openwrt
