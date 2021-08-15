@@ -4,7 +4,7 @@
 # Author: kenzo
 #=================================================
 
-name: Lienol_4.14内核
+name: Lienol_21.02_Newifi3
 
 on: 
 # Release 发布触发
@@ -18,7 +18,7 @@ on:
       
 # 定时触发      
   schedule:
-    - cron: 0 */48 * * *
+    - cron: 0 3 * * 6
 
 # 点赞触发  
 #  watch:
@@ -66,7 +66,7 @@ jobs:
     - name: 克隆源代码
       env: 
         REPO_URL: https://github.com/Lienol/openwrt
-        REPO_BRANCH: 19.07
+        REPO_BRANCH: main
       
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
@@ -96,7 +96,7 @@ jobs:
         rm -rf package/litte/luci-app-adguardhome
         cp -f package/litte/commit/zzz-default-settings package/default-settings/files/zzz-default-settings
         cp -f package/litte/commit/banner package/base-files/files/etc/banner
-        cp -f package//litte/commit/Lienoldiffconfig .config && make defconfig
+        cp -f ./newifi3.config .config && make defconfig
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
