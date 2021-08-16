@@ -86,6 +86,7 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
+        git clone https://github.com/kenzok8/litte package/litte
         git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
         
     - name: 自定义配置文件Lienol
