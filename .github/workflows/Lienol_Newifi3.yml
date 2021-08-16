@@ -94,7 +94,7 @@ jobs:
         CONFIG_FILE: 'newifi3.config'
         CUSTOMIZE_FILE: 'customize.sh'
       run: |
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        cp -f $GITHUB_WORKSPACE/$CONFIG_FILE openwrt/.config
         [ -e $CUSTOMIZE_FILE ] && mv $CUSTOMIZE_FILE openwrt/customize.sh
         sed -i 's/192.168.1.1/192.168.99.1/g' openwrt/package/base-files/files/bin/config_generate
         cd openwrt && rm -rf package/litte/AdGuardHome
