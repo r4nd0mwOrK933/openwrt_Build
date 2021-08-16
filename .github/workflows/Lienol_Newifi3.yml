@@ -86,7 +86,6 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/kenzok8/litte package/litte
         git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
         
     - name: 自定义配置文件Lienol
@@ -97,10 +96,7 @@ jobs:
         cp -f $GITHUB_WORKSPACE/$CONFIG_FILE openwrt/.config
         [ -e $CUSTOMIZE_FILE ] && mv $CUSTOMIZE_FILE openwrt/customize.sh
         sed -i 's/192.168.1.1/192.168.99.1/g' openwrt/package/base-files/files/bin/config_generate
-        cd openwrt && rm -rf package/litte/AdGuardHome
-        rm -rf package/litte/luci-app-adguardhome
-        cp -f package/litte/commit/zzz-default-settings package/default-settings/files/zzz-default-settings
-        cp -f package/litte/commit/banner package/base-files/files/etc/banner
+        cd openwrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         sed -i 's/luci-theme-bootstrap/luci-theme-material/g' ./feeds/luci/collections/luci/Makefile
