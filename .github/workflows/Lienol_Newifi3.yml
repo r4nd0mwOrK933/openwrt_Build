@@ -86,12 +86,11 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/kenzok8/litte package/litte
-        git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+        git clone https://github.com/kenzok8/litte/tree/master/luci-app-openclash package/openclash
         
     - name: 自定义配置文件Lienol
       env:
-        CONFIG_FILE: 'newifi3.config'
+        CONFIG_FILE: 'config/newifi3.config'
         CUSTOMIZE_FILE: 'customize.sh'
       run: |
         cp -f $GITHUB_WORKSPACE/$CONFIG_FILE openwrt/.config
