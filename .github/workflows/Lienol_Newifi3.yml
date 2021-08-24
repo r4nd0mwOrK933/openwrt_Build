@@ -86,7 +86,7 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/kenzok8/litte/tree/master/luci-app-openclash package/openclash
+        git clone https://github.com/kenzok8/litte/ package/little
         
     - name: 自定义配置文件Lienol
       env:
